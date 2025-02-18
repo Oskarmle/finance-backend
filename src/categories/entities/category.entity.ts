@@ -6,5 +6,5 @@ export class Category {
   id: number;
 
   @Column()
-  todo: string;
+  category: string;
 }
