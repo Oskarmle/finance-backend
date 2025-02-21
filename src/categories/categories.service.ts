@@ -24,9 +24,8 @@ export class CategoriesService {
     return this.categoryRepository.findOne({ where: { id } });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+    return this.categoryRepository.update(id, updateCategoryDto);
   }
 
   remove(id: number) {
