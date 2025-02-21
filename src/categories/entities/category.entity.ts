@@ -7,7 +7,4 @@ export class Category {
 
   @Column()
   category: string;
-
-  @Column({ default: false })
-  isCompleted: boolean;
 }
