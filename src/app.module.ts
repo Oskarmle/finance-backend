@@ -5,7 +5,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EntriesModule } from './entries/entries.module';
-import { dbConfig } from 'data.source';
+import { dbConfig } from '../data.source';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
