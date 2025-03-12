@@ -22,14 +22,14 @@ export class AuthController {
     return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
+  @Post('signup')
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.authService.create(createUserDto);
+  }
+
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
-  }
-
-  @Post('signup')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.authService.create(createUserDto);
   }
 }

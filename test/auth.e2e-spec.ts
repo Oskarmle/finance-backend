@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { Repository } from 'typeorm';
-import { UsersService } from '../src/users/users.service';
 import { AuthService } from '../src/auth/auth.service';
 import { AppModule } from '../src/app.module';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
@@ -12,7 +11,6 @@ describe('AuthController (e2e)', () => {
   let app: INestApplication;
   let moduleFixture: TestingModule;
   let usersRepository: Repository<UserEntity>;
-  let usersService: UsersService; // WHYYYY
   let authService: AuthService; // WHYYYY
 
   beforeEach(async () => {
@@ -20,7 +18,6 @@ describe('AuthController (e2e)', () => {
       imports: [AppModule, TypeOrmModule.forFeature([UserEntity])],
     }).compile();
 
-    usersService = moduleFixture.get(UsersService);
     authService = moduleFixture.get(AuthService);
     usersRepository = moduleFixture.get(getRepositoryToken(UserEntity));
 
