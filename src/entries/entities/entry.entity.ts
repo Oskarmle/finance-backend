@@ -16,9 +16,6 @@ export class Entry {
   datetime: Date;
 
   @Column()
-  currency: string;
-
-  @Column()
   paymentMethod: string;
 
   @ManyToOne(() => Category, (category) => category.entries, {})
