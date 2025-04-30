@@ -1,5 +1,11 @@
 import { Transform } from 'class-transformer';
-import { IsNumber, IsString, IsDate, ValidateNested } from 'class-validator';
+import {
+  IsNumber,
+  IsString,
+  IsDate,
+  ValidateNested,
+  IsInt,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 import { DeepPartial } from 'typeorm';
 import { Category } from 'src/categories/entities/category.entity';
@@ -21,4 +27,7 @@ export class CreateEntryDto {
   @ValidateNested()
   @Type(() => Category)
   category: DeepPartial<Category>;
+
+  @IsInt()
+  userEntityId: number;
 }
