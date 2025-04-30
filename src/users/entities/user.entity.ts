@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from '../Role';
+import { Category } from 'src/categories/entities/category.entity';
+import { Entry } from 'src/entries/entities/entry.entity';
 
 @Entity()
 export class UserEntity {
@@ -18,4 +20,10 @@ export class UserEntity {
     default: [Role.User],
   })
   role: Role;
+
+  @OneToMany(() => Category, (category) => category.userEntity)
+  categories: Category[];
+
+  @OneToMany(() => Entry, (entry) => entry.userEntity)
+  entry: Entry[];
 }

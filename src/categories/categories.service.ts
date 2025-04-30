@@ -4,16 +4,30 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
 import { Repository } from 'typeorm';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
+
+    @InjectRepository(UserEntity)
+    private userEntityRepository: Repository<UserEntity>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return this.categoryRepository.save(createCategoryDto);
+  async create(createCategoryDto: CreateCategoryDto) {
+    const { userEntityId, ...categoryData } = createCategoryDto;
+
+    const user = await this.userEntityRepository.findOne({
+      where: { id: userEntityId },
+    });
+    const newCategory = this.categoryRepository.create({
+      ...categoryData,
+      userEntity: user,
+    });
+
+    return this.categoryRepository.save(newCategory);
   }
 
   findAll() {
